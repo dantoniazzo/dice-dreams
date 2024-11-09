@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import background from '/background.jfif';
+import { Navbar } from '_widgets/Navbar';
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -15,10 +16,19 @@ const Blur = styled.div`
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
 `;
+
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
 function App() {
   return (
     <AppContainer>
       <Blur />
+      <Content>
+        <Navbar />
+      </Content>
     </AppContainer>
   );
 }
