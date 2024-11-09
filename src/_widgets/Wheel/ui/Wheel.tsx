@@ -7,15 +7,16 @@ export const WheelContainer = styled.div`
 `;
 
 export const Frame = styled.img`
+  width: 100%;
   position: absolute;
+  left: 0;
+  top: -15px;
 `;
 
 export const Rewards = styled.img`
-  position: absolute;
-  top: 8px;
-  left: -5px;
+  width: 100%;
   transition: transform 5s;
-  transform: scale(0.85) rotate(3600deg);
+  transform: scale(0.85) rotate(0deg);
 `;
 
 export const Wheel = () => {

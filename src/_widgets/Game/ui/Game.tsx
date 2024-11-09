@@ -5,7 +5,7 @@ export const GameContainer = styled.div`
   width: 100%;
   height: fit-content;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -13,6 +13,7 @@ export const Game = () => {
   return (
     <GameContainer>
       <FreeSpinsModal />
+
       <Wheel />
     </GameContainer>
   );

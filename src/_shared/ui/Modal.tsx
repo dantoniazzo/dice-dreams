@@ -11,10 +11,6 @@ export const ModalContainer = styled.div`
   border-radius: 60px;
 `;
 
-interface ModalProps {
-  children: React.ReactNode;
-}
-
-export const Modal = (props: ModalProps) => {
+export const Modal = (props: React.ComponentProps<'div'>) => {
   return <ModalContainer>{props.children}</ModalContainer>;
 };
