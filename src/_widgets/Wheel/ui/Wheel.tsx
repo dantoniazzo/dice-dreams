@@ -4,6 +4,9 @@ import rewards from '/wheel-rewards.png';
 
 export const WheelContainer = styled.div`
   position: relative;
+  @media (max-width: 960px) {
+    margin-top: -15px;
+  }
 `;
 
 export const Frame = styled.img`

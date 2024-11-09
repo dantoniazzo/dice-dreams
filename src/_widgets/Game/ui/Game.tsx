@@ -8,6 +8,10 @@ export const GameContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-top: 32px;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
 `;
 
 export const Game = () => {
