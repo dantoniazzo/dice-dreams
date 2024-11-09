@@ -16,6 +16,18 @@ body,
   color: white;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 @font-face {
   font-family: 'Curse Casual';
   src: local('Curse Casual'), url('/Curse Casual.ttf') format('truetype');

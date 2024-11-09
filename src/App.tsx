@@ -25,13 +25,14 @@ const Content = styled.div`
   height: 100vh;
   left: 0;
   top: 0;
+  overflow-y: auto;
 `;
 function App() {
   return (
     <Router>
       <AppContainer>
         <Blur />
-        <Content>
+        <Content className="no-scrollbar">
           <Navbar />
           <Game />
         </Content>
