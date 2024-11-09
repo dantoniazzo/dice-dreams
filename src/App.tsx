@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import background from '/background.jfif';
 import { Navbar } from '_widgets/Navbar';
 import { Game } from '_widgets/Game';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -27,13 +28,15 @@ const Content = styled.div`
 `;
 function App() {
   return (
-    <AppContainer>
-      <Blur />
-      <Content>
-        <Navbar />
-        <Game />
-      </Content>
-    </AppContainer>
+    <Router>
+      <AppContainer>
+        <Blur />
+        <Content>
+          <Navbar />
+          <Game />
+        </Content>
+      </AppContainer>
+    </Router>
   );
 }
 

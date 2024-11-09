@@ -7,8 +7,8 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 3px solid white;
   border-radius: 60px;
+  position: relative;
 `;
 
 export const Modal = (props: React.ComponentProps<'div'>) => {
