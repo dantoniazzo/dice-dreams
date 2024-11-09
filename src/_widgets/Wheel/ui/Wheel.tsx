@@ -8,23 +8,19 @@ export const WheelContainer = styled.div`
 
 export const Frame = styled.img`
   position: absolute;
-  width: 30%;
-  aspect-ratio: 1/1;
 `;
 
 export const Rewards = styled.img`
   position: absolute;
-  width: 30%;
-  aspect-ratio: 1/1;
-  top: 10px;
+  top: 8px;
+  left: -5px;
   transition: transform 5s;
-  transform: scale(0.9) rotate(3600deg);
+  transform: scale(0.85) rotate(3600deg);
 `;
 
 export const Wheel = () => {
   return (
     <WheelContainer>
-      {' '}
       <Rewards src={rewards} />
       <Frame src={frame} />
     </WheelContainer>

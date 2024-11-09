@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import background from '/background.jfif';
 import { Navbar } from '_widgets/Navbar';
-import { FreeSpinsModal } from '_widgets/FreeSpinsModal';
-import { Wheel } from '_widgets/Wheel';
+import { Game } from '_widgets/Game';
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -32,8 +31,7 @@ function App() {
       <Blur />
       <Content>
         <Navbar />
-        <FreeSpinsModal />
-        <Wheel />
+        <Game />
       </Content>
     </AppContainer>
   );
