@@ -26,7 +26,57 @@ export const Title = styled.h1<{ top?: string }>`
   top: ${(props) => props.top || '0'};
 `;
 
-export const IdInput = styled.input``;
+export const InputContainer = styled.div`
+  border: 3px solid black;
+  height: 48px;
+  width: 77%;
+  border-radius: 1000px;
+  display: flex;
+  overflow: hidden;
+`;
+
+export const InputTextContainer = styled.div`
+  height: 100%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 7.5;
+`;
+
+export const IdInput = styled.input`
+  border: none;
+  outline: none;
+  height: 100%;
+  width: 6rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: bold;
+`;
+
+export const InputText = styled.p`
+  font-size: 1.2rem;
+  letter-spacing: 0.04rem;
+  color: #444444;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+`;
+
+export const GoButton = styled.button`
+  background: linear-gradient(#959595, #5c5c5c);
+  border: none;
+  border-left: 3px solid black;
+  font-family: inherit;
+  font-size: 1.2rem;
+  color: #344767;
+  flex: 2.5;
+`;
 
 export const Text = styled.span`
   text-decoration: underline;
@@ -48,7 +98,15 @@ export const FreeSpinsModal = () => {
       <Background src={modal1} />
       <Content>
         <Title>ENTER YOUR PLAYER ID</Title>
-        <IdInput />
+        <InputContainer>
+          <InputTextContainer>
+            <InputText>GD</InputText>
+            <IdInput />
+            <InputText>A</InputText>
+          </InputTextContainer>
+
+          <GoButton>GO!</GoButton>
+        </InputContainer>
         <Text>Where is my Player ID?</Text>
         <Confirmations>
           <Checkbox
