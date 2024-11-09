@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import frame from '/wheel-frame.png';
 import rewards from '/wheel-rewards.png';
+import { getRewardsElementId } from '../lib/rewards.element';
+import { spinTheWheel } from '_features/spin-wheel';
 
 export const WheelContainer = styled.div`
   position: relative;
@@ -19,13 +21,13 @@ export const Frame = styled.img`
 export const Rewards = styled.img`
   width: 100%;
   transition: transform 5s;
-  transform: scale(0.85) rotate(0deg);
+  transform: scale(0.85);
 `;
 
 export const Wheel = () => {
   return (
-    <WheelContainer>
-      <Rewards src={rewards} />
+    <WheelContainer onClick={spinTheWheel}>
+      <Rewards id={getRewardsElementId()} src={rewards} />
       <Frame src={frame} />
     </WheelContainer>
   );
