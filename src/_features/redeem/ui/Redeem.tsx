@@ -37,6 +37,7 @@ export const Left = styled.div`
 export const Right = styled.div`
   display: flex;
   align-items: flex-end;
+  margin-bottom: 1.5rem;
   justify-content: center;
   flex: 4;
 
