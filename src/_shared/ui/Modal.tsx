@@ -13,7 +13,11 @@ export const ModalContainer = styled.div`
 
 export const ModalBackground = styled.img``;
 
-export const ModalContent = styled.div<{ padding: number; top: string }>`
+export const ModalContent = styled.div<{
+  padding: number;
+  top: string;
+  justifyContent?: string;
+}>`
   width: ${(props) => `calc(100% - ${props.padding * 2}px)`};
   height: ${(props) => `calc(100% - ${props.top} - ${props.padding * 2}px)`};
   padding: ${(props) => props.padding}px;
@@ -23,7 +27,7 @@ export const ModalContent = styled.div<{ padding: number; top: string }>`
   border-radius: inherit;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${(props) => props.justifyContent ?? 'space-between'};
   align-items: center;
 `;
 
