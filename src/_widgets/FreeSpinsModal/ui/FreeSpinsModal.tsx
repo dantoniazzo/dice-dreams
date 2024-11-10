@@ -1,25 +1,9 @@
-import { Checkbox, Modal } from '_shared/ui';
+import { Checkbox, Modal, ModalBackground, ModalContent } from '_shared/ui';
 import styled from 'styled-components';
 import modal1 from '/modal-1.png';
 import { PADDING, TOP } from '../lib/constants';
 import { useNavigate } from 'react-router-dom';
 import socialButtons from '/social-buttons.png';
-
-export const Background = styled.img``;
-
-export const Content = styled.div`
-  width: calc(100% - ${PADDING * 2}px);
-  height: calc(100% - ${TOP} - ${PADDING * 2}px);
-  padding: ${PADDING}px;
-  position: absolute;
-  top: ${TOP};
-  left: 0;
-  border-radius: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 export const Title = styled.h1<{ top?: string }>`
   position: relative;
@@ -95,8 +79,8 @@ export const FreeSpinsModal = () => {
   const navigate = useNavigate();
   return (
     <Modal>
-      <Background src={modal1} />
-      <Content>
+      <ModalBackground src={modal1} />
+      <ModalContent padding={PADDING} top={TOP}>
         <Title>ENTER YOUR PLAYER ID</Title>
         <InputContainer>
           <InputTextContainer>
@@ -133,7 +117,7 @@ export const FreeSpinsModal = () => {
         </Confirmations>
         <Title top="1rem">NOT A PLAYER YET?</Title>
         <SocialButton src={socialButtons} />
-      </Content>
+      </ModalContent>
     </Modal>
   );
 };

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { FreeSpinsModal } from '_widgets/FreeSpinsModal';
 import { Wheel } from '_widgets/Wheel';
+import { WinModal } from '_widgets/WinModal';
+
 export const GameContainer = styled.div`
   width: 100%;
   height: fit-content;
@@ -20,6 +22,7 @@ export const Game = () => {
       <FreeSpinsModal />
 
       <Wheel />
+      <WinModal />
     </GameContainer>
   );
 };
