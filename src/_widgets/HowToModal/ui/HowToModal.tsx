@@ -29,7 +29,7 @@ export const HowToModal = () => {
       <Modal>
         <ModalBackground src={modal5} />
         <ModalContent justifyContent="flex-start" padding={PADDING} top={TOP}>
-          <ModalCloseButton />
+          <ModalCloseButton align="end" />
           <HowToModalContent>
             <LargeText>HOW TO PARTICIPATE?</LargeText>
             <MediumText>1. Download Dice Dreams</MediumText>

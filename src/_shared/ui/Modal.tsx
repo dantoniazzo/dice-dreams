@@ -18,6 +18,7 @@ export const ModalContent = styled.div<{
   padding: number;
   top: string;
   justifyContent?: string;
+  alignItems?: string;
 }>`
   width: ${(props) => `calc(100% - ${props.padding * 2}px)`};
   height: ${(props) => `calc(100% - ${props.top} - ${props.padding * 2}px)`};
@@ -29,21 +30,25 @@ export const ModalContent = styled.div<{
   display: flex;
   flex-direction: column;
   justify-content: ${(props) => props.justifyContent ?? 'space-between'};
-  align-items: center;
+  align-items: ${(props) => props.alignItems ?? 'center'};
 `;
 
-export const ModaCloseButtonContainer = styled.div`
+interface ModalCloseButtonProps {
+  align: 'start' | 'end';
+}
+
+export const ModaCloseButtonContainer = styled.div<ModalCloseButtonProps>`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: ${(props) => `flex-${props.align}`};
 `;
 
 export const ModalCloseButtonImg = styled.img``;
 
-export const ModalCloseButton = () => {
+export const ModalCloseButton = (props: ModalCloseButtonProps) => {
   return (
-    <ModaCloseButtonContainer>
+    <ModaCloseButtonContainer {...props}>
       <ModalCloseButtonImg src={modalCloseButton} />
     </ModaCloseButtonContainer>
   );

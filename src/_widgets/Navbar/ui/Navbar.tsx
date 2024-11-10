@@ -22,7 +22,7 @@ export const Navbar = () => {
   return (
     <NavbarContainer>
       <SmallLogo src={logo} />
-      <Image src={hamburger} />
+      <Image cursor="pointer" src={hamburger} />
     </NavbarContainer>
   );
 };

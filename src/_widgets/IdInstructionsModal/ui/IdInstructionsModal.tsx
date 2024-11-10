@@ -16,7 +16,7 @@ export const IdInstructionsModal = () => {
         <ModalBackground src={modal4} />
 
         <ModalContent justifyContent="space-around" padding={PADDING} top={TOP}>
-          <ModalCloseButton />
+          <ModalCloseButton align="end" />
           <MediumText textAlign="center">
             1. Click on the gear icon in the upper right corner of the menu
           </MediumText>

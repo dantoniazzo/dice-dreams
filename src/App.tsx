@@ -36,7 +36,7 @@ function App() {
         <Content className="no-scrollbar">
           <Navbar />
           <Game />
-          {/* <Redeem /> */}
+          {/*  <Redeem /> */}
         </Content>
       </AppContainer>
     </Router>

@@ -7,7 +7,8 @@ export const PrizeText = styled.h1<{ fontSize?: string }>`
   -webkit-text-fill-color: transparent;
 `;
 
-export const LargeText = styled.h1<{ top?: string }>`
+export const LargeText = styled.h1<{ top?: string; fontSize?: string }>`
+  font-size: ${(props) => props.fontSize || '32px'};
   position: relative;
   top: ${(props) => props.top || '0'};
 `;
