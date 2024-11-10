@@ -11,12 +11,6 @@ const MainContainer = styled.div`
   position: absolute;
 `;
 
-const Background = styled.img`
-  position: absolute;
-  right: 0;
-  height: 100%;
-`;
-
 const FirstOverlay = styled.div`
   position: absolute;
   top: 0%;
@@ -34,12 +28,18 @@ const SecondOverlay = styled.div`
 `;
 
 const SideMenuContent = styled.div`
-  margin-top: 2.5rem;
-  height: 40%;
-
+  height: calc(100% - 100px);
   position: absolute;
-  right: 7.2rem;
-  top: 1.5rem;
+  width: 30%;
+  right: 0;
+  top: 0;
+  background: url(${modal6});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  padding: 50px;
+  border: 3px solid white;
+  border-top-left-radius: 60px;
 `;
 
 const TextContent = styled.div`
@@ -67,7 +67,6 @@ export const SideMenu = () => {
     <MainContainer>
       <FirstOverlay />
       <SecondOverlay />
-      <Background src={modal6} />
 
       <SideMenuContent>
         <CloseButton onClick={toggle} src={modalCloseButton} />
