@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import background from '/background.jfif';
 import { Navbar } from '_widgets/Navbar';
 import { Game } from '_widgets/Game';
+import { Redeem } from '_features/redeem';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const AppContainer = styled.div`
@@ -33,8 +34,9 @@ function App() {
       <AppContainer>
         <Blur />
         <Content className="no-scrollbar">
-          <Navbar />
-          <Game />
+          {/* <Navbar /> */}
+          {/*  <Game /> */}
+          <Redeem />
         </Content>
       </AppContainer>
     </Router>

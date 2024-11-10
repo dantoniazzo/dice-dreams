@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import logo from '/logo.png';
 import hamburger from '/hamburger.png';
 import { PADDING } from '../lib/constants';
+import { Image } from '_shared/ui';
+
+export const SmallLogo = styled.img`
+  width: 177px;
+  height: 100px;
+`;
 
 const NavbarContainer = styled.div`
   width: calc(100% - ${PADDING * 2}px);
@@ -12,15 +18,11 @@ const NavbarContainer = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.img``;
-
-const Hamburguer = styled.img``;
-
 export const Navbar = () => {
   return (
     <NavbarContainer>
-      <Logo src={logo} />
-      <Hamburguer src={hamburger} />
+      <SmallLogo src={logo} />
+      <Image src={hamburger} />
     </NavbarContainer>
   );
 };

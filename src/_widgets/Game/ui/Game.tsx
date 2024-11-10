@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FreeSpinsModal } from '_widgets/FreeSpinsModal';
+import { UserIdModal } from '_widgets/UserIdModal';
 import { Wheel } from '_widgets/Wheel';
 import { WinModal } from '_widgets/WinModal';
 
@@ -19,8 +20,8 @@ export const GameContainer = styled.div`
 export const Game = () => {
   return (
     <GameContainer>
+      <UserIdModal />
       <FreeSpinsModal />
-
       <Wheel />
       <WinModal />
     </GameContainer>
