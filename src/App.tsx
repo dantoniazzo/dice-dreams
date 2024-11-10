@@ -34,9 +34,9 @@ function App() {
       <AppContainer>
         <Blur />
         <Content className="no-scrollbar">
-          {/* <Navbar /> */}
-          {/*  <Game /> */}
-          <Redeem />
+          <Navbar />
+          <Game />
+          {/* <Redeem /> */}
         </Content>
       </AppContainer>
     </Router>

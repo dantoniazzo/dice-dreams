@@ -3,6 +3,7 @@ import { FreeSpinsModal } from '_widgets/FreeSpinsModal';
 import { UserIdModal } from '_widgets/UserIdModal';
 import { Wheel } from '_widgets/Wheel';
 import { WinModal } from '_widgets/WinModal';
+import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
 
 export const GameContainer = styled.div`
   width: 100%;
@@ -23,7 +24,8 @@ export const Game = () => {
       <UserIdModal />
       <FreeSpinsModal />
       <Wheel />
-      <WinModal />
+      {/* <WinModal /> */}
+      <IdInstructionsModal />
     </GameContainer>
   );
 };

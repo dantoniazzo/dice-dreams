@@ -12,8 +12,9 @@ export const LargeText = styled.h1<{ top?: string }>`
   top: ${(props) => props.top || '0'};
 `;
 
-export const MediumText = styled.h4`
+export const MediumText = styled.h4<{ textAlign?: string }>`
   font-size: 20px;
+  text-align: ${(props) => props.textAlign || 'left'};
 `;
 
 export const SmallText = styled.span<{ textDecoration?: string }>`
