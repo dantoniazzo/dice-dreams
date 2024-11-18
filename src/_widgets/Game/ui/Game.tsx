@@ -6,6 +6,7 @@ import { WinModal } from '_widgets/WinModal';
 import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
 import { HowToModal } from '_widgets/HowToModal';
 import { SideMenu } from '_widgets/SideMenu';
+import { useAppSelector } from '_app/redux';
 
 export const GameContainer = styled.div`
   width: 100%;
@@ -21,10 +22,11 @@ export const GameContainer = styled.div`
 `;
 
 export const Game = () => {
+  const freeSpins = useAppSelector((state) => state.main.freeSpins);
   return (
     <GameContainer>
-      <UserIdModal />
-      <FreeSpinsModal />
+      {!freeSpins && <UserIdModal />}
+      {freeSpins && <FreeSpinsModal />}
       <Wheel />
       {/* <WinModal /> */}
       {/* <IdInstructionsModal /> */}

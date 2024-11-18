@@ -13,7 +13,8 @@ import { PADDING, TOP } from '../lib/constants';
 import { useNavigate } from 'react-router-dom';
 import socialButtons from '/social-buttons.png';
 import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { useFreeSpins } from '_features/free-spins';
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -95,6 +96,7 @@ export const UserIdModal = () => {
   const [disabled, setDisabled] = useState(true);
   const [isPlayerIdInstruction, setIsPlayerIdInstructions] = useState(false);
   const navigate = useNavigate();
+  const _freeSpins = useFreeSpins();
 
   const togglePlayerIdInstructions = () => {
     setIsPlayerIdInstructions(!isPlayerIdInstruction);
@@ -110,6 +112,7 @@ export const UserIdModal = () => {
       setDisabled(true);
     }
   };
+
   return (
     <Modal>
       <ModalBackground src={modal1} />
@@ -122,7 +125,9 @@ export const UserIdModal = () => {
             <InputText>A</InputText>
           </InputTextContainer>
 
-          <GoButton disabled={disabled}>GO!</GoButton>
+          <GoButton onClick={_freeSpins.generateFreeSpins} disabled={disabled}>
+            GO!
+          </GoButton>
         </InputContainer>
         <SmallText
           onClick={togglePlayerIdInstructions}
