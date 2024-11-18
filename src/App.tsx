@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import background from '/background.jfif';
 import { Navbar } from '_widgets/Navbar';
 import { Game } from '_widgets/Game';
-import { Redeem } from '_features/redeem';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const AppContainer = styled.div`
@@ -24,8 +23,8 @@ const Blur = styled.div`
 
 const Content = styled.div`
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   left: 0;
   top: 0;
   overflow-y: auto;
@@ -39,7 +38,6 @@ function App() {
           <Content className="no-scrollbar">
             <Navbar />
             <Game />
-            {/*  <Redeem /> */}
           </Content>
         </AppContainer>
       </Router>
