@@ -12,6 +12,8 @@ import modal1 from '/modal-1.png';
 import { PADDING, TOP } from '../lib/constants';
 import { useNavigate } from 'react-router-dom';
 import socialButtons from '/social-buttons.png';
+import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
+import { useState } from 'react';
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -73,7 +75,12 @@ export const Confirmations = styled.div`
 `;
 
 export const UserIdModal = () => {
+  const [isPlayerIdInstruction, setIsPlayerIdInstructions] = useState(false);
   const navigate = useNavigate();
+
+  const togglePlayerIdInstructions = () => {
+    setIsPlayerIdInstructions(!isPlayerIdInstruction);
+  };
   return (
     <Modal>
       <ModalBackground src={modal1} />
@@ -88,7 +95,17 @@ export const UserIdModal = () => {
 
           <GoButton>GO!</GoButton>
         </InputContainer>
-        <SmallText>Where is my Player ID?</SmallText>
+        <SmallText
+          onClick={togglePlayerIdInstructions}
+          textDecoration="underline"
+          cursor="pointer"
+        >
+          Where is my Player ID?
+        </SmallText>
+        <IdInstructionsModal
+          open={isPlayerIdInstruction}
+          setOpen={setIsPlayerIdInstructions}
+        />
         <Confirmations>
           <Checkbox
             label={

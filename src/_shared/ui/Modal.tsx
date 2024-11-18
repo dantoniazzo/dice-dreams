@@ -35,6 +35,7 @@ export const ModalContent = styled.div<{
 
 interface ModalCloseButtonProps {
   align: 'start' | 'end';
+  onClick?: () => void;
 }
 
 export const ModaCloseButtonContainer = styled.div<ModalCloseButtonProps>`
@@ -42,6 +43,7 @@ export const ModaCloseButtonContainer = styled.div<ModalCloseButtonProps>`
   display: flex;
   align-items: center;
   justify-content: ${(props) => `flex-${props.align}`};
+  cursor: pointer;
 `;
 
 export const ModalCloseButtonImg = styled.img``;
@@ -55,5 +57,12 @@ export const ModalCloseButton = (props: ModalCloseButtonProps) => {
 };
 
 export const Modal = (props: React.ComponentProps<'div'>) => {
-  return <ModalContainer>{props.children}</ModalContainer>;
+  const { children, ...rest } = props;
+  return <ModalContainer {...rest}>{children}</ModalContainer>;
 };
+
+export interface ModalProps {
+  open?: boolean;
+  setOpen: (open: boolean) => void;
+  ref?: React.RefObject<HTMLDivElement>;
+}

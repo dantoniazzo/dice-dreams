@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { LargeText } from '_shared/ui';
 import modal6 from '/modal-6.png';
 import modal6bottom from '/modal-6-bottom.png';
@@ -7,6 +8,8 @@ import { useAppSelector } from '_app/redux';
 import { useOnClickOutside } from 'usehooks-ts';
 import { useRef } from 'react';
 import { useSliderMutation } from '_features/slider-mutation';
+import { HowToModal } from '_widgets/HowToModal';
+import { getHowToModalElement } from '_widgets/HowToModal';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -78,12 +81,22 @@ const BottomImage = styled.img`
 `;
 
 export const SideMenu = () => {
+  const [isHowToOpened, setIsHowToOpened] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const open = useAppSelector((state) => state.main.sliderOpen);
 
   const _sliderMutation = useSliderMutation();
 
-  useOnClickOutside(contentRef, _sliderMutation.closeSlider);
+  useOnClickOutside(contentRef, (event) => {
+    const howToElement = getHowToModalElement();
+    if (!howToElement?.contains(event.target as Node)) {
+      _sliderMutation.closeSlider();
+    }
+  });
+
+  const toggleHowTo = () => {
+    setIsHowToOpened(!isHowToOpened);
+  };
 
   if (!open) return null;
   return (
@@ -97,13 +110,14 @@ export const SideMenu = () => {
             src={modalCloseButton}
           />
           <TextContent>
-            <LargeText>HOW TO PARTICIPATE?</LargeText>
+            <LargeText onClick={toggleHowTo}>HOW TO PARTICIPATE?</LargeText>
             <LargeText>CONDITIONS OF PARTICIPATION</LargeText>
             <LargeText>PRIVACY POLICY</LargeText>
             <LargeText>CONTACT</LargeText>
           </TextContent>
         </SideMenuContent>
         <BottomImage src={modal6bottom} />
+        <HowToModal open={isHowToOpened} setOpen={setIsHowToOpened} />
       </SideMenuContentContainer>
     </MainContainer>
   );

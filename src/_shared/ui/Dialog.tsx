@@ -6,6 +6,7 @@ interface Props {
   open?: boolean;
   setOpen: (value: boolean) => void;
   title?: string;
+  ref?: React.RefObject<HTMLDivElement>;
 }
 
 export const Dialog = (props: Props) => {
@@ -16,7 +17,7 @@ export const Dialog = (props: Props) => {
       <RadixDialog.Portal>
         <DialogOverlay1 onClick={closeModal} />
         <DialogOverlay2 onClick={closeModal} />
-        <DialogContent>
+        <DialogContent ref={props.ref}>
           <DialogTitle>{props.title}</DialogTitle>
           {props.children}
         </DialogContent>

@@ -18,6 +18,10 @@ export const MediumText = styled.h4<{ textAlign?: string }>`
   text-align: ${(props) => props.textAlign || 'left'};
 `;
 
-export const SmallText = styled.span<{ textDecoration?: string }>`
+export const SmallText = styled.span<{
+  textDecoration?: string;
+  cursor?: string;
+}>`
   text-decoration: ${(props) => props.textDecoration || 'none'};
+  cursor: ${(props) => props.cursor};
 `;
