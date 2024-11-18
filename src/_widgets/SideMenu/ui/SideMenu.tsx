@@ -1,8 +1,9 @@
 import { LargeText } from '_shared/ui';
 import modal6 from '/modal-6.png';
+import modal6bottom from '/modal-6-bottom.png';
 import styled from 'styled-components';
 import modalCloseButton from '/modal-close-button.png';
-import { useAppSelector, useAppDispatch, setSliderOpen } from '_app/redux';
+import { useAppSelector } from '_app/redux';
 import { useOnClickOutside } from 'usehooks-ts';
 import { useRef } from 'react';
 import { useSliderMutation } from '_features/slider-mutation';
@@ -30,19 +31,23 @@ const SecondOverlay = styled.div`
   background: #00000099;
 `;
 
-const SideMenuContent = styled.div`
-  height: calc(100% - 100px);
-  position: absolute;
+const SideMenuContentContainer = styled.div`
+  height: 100%;
   width: 30%;
+  position: absolute;
   right: 0;
   top: 0;
   background: url(${modal6});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
-  padding: 50px;
   border: 3px solid white;
   border-top-left-radius: 60px;
+`;
+
+const SideMenuContent = styled.div`
+  height: calc(100% - 100px);
+  padding: 50px;
 `;
 
 const TextContent = styled.div`
@@ -61,6 +66,13 @@ const CloseButton = styled.img`
   cursor: pointer;
 `;
 
+const BottomImage = styled.img`
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+`;
+
 export const SideMenu = () => {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const open = useAppSelector((state) => state.main.sliderOpen);
@@ -74,19 +86,21 @@ export const SideMenu = () => {
     <MainContainer>
       <FirstOverlay />
       <SecondOverlay />
-
-      <SideMenuContent ref={contentRef}>
-        <CloseButton
-          onClick={_sliderMutation.toggleSlider}
-          src={modalCloseButton}
-        />
-        <TextContent>
-          <LargeText>HOW TO PARTICIPATE?</LargeText>
-          <LargeText>CONDITIONS OF PARTICIPATION</LargeText>
-          <LargeText>PRIVACY POLICY</LargeText>
-          <LargeText>CONTACT</LargeText>
-        </TextContent>
-      </SideMenuContent>
+      <SideMenuContentContainer>
+        <SideMenuContent ref={contentRef}>
+          <CloseButton
+            onClick={_sliderMutation.toggleSlider}
+            src={modalCloseButton}
+          />
+          <TextContent>
+            <LargeText>HOW TO PARTICIPATE?</LargeText>
+            <LargeText>CONDITIONS OF PARTICIPATION</LargeText>
+            <LargeText>PRIVACY POLICY</LargeText>
+            <LargeText>CONTACT</LargeText>
+          </TextContent>
+        </SideMenuContent>
+        <BottomImage src={modal6bottom} />
+      </SideMenuContentContainer>
     </MainContainer>
   );
 };
