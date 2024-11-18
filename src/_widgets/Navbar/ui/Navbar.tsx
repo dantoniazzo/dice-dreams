@@ -3,6 +3,7 @@ import logo from '/logo.png';
 import hamburger from '/hamburger.png';
 import { PADDING } from '../lib/constants';
 import { Image } from '_shared/ui';
+import { useSliderMutation } from '_features/slider-mutation';
 
 export const SmallLogo = styled.img`
   width: 177px;
@@ -19,10 +20,15 @@ const NavbarContainer = styled.div`
 `;
 
 export const Navbar = () => {
+  const _sliderMutation = useSliderMutation();
   return (
     <NavbarContainer>
       <SmallLogo src={logo} />
-      <Image cursor="pointer" src={hamburger} />
+      <Image
+        onClick={_sliderMutation.openSlider}
+        cursor="pointer"
+        src={hamburger}
+      />
     </NavbarContainer>
   );
 };

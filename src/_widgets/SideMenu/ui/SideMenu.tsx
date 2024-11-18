@@ -3,6 +3,9 @@ import modal6 from '/modal-6.png';
 import styled from 'styled-components';
 import modalCloseButton from '/modal-close-button.png';
 import { useAppSelector, useAppDispatch, setSliderOpen } from '_app/redux';
+import { useOnClickOutside } from 'usehooks-ts';
+import { useRef } from 'react';
+import { useSliderMutation } from '_features/slider-mutation';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -59,19 +62,24 @@ const CloseButton = styled.img`
 `;
 
 export const SideMenu = () => {
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const open = useAppSelector((state) => state.main.sliderOpen);
-  const dispatch = useAppDispatch();
-  const toggle = () => {
-    dispatch(setSliderOpen(!open));
-  };
+
+  const _sliderMutation = useSliderMutation();
+
+  useOnClickOutside(contentRef, _sliderMutation.closeSlider);
+
   if (!open) return null;
   return (
     <MainContainer>
       <FirstOverlay />
       <SecondOverlay />
 
-      <SideMenuContent>
-        <CloseButton onClick={toggle} src={modalCloseButton} />
+      <SideMenuContent ref={contentRef}>
+        <CloseButton
+          onClick={_sliderMutation.toggleSlider}
+          src={modalCloseButton}
+        />
         <TextContent>
           <LargeText>HOW TO PARTICIPATE?</LargeText>
           <LargeText>CONDITIONS OF PARTICIPATION</LargeText>
