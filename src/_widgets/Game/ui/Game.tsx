@@ -28,7 +28,7 @@ export const Game = () => {
       {!freeSpins && <UserIdModal />}
       {freeSpins && <FreeSpinsModal />}
       <Wheel />
-      {/* <WinModal /> */}
+      <WinModal />
       {/* <IdInstructionsModal /> */}
       <SideMenu />
       {/*  <HowToModal /> */}

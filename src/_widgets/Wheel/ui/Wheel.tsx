@@ -3,7 +3,7 @@ import frame from '/wheel-frame.png';
 import rewards from '/wheel-rewards.png';
 import pointer from '/pointer.png';
 import { getRewardsElementId } from '../lib/rewards.element';
-import { spinTheWheel } from '_features/spin-wheel';
+import { DURATION_OF_SPIN } from '../lib/constants';
 
 export const WheelContainer = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ export const Frame = styled.img`
 
 export const Rewards = styled.img`
   width: 100%;
-  transition: transform 5s;
+  transition: transform ${DURATION_OF_SPIN}s;
   transform: scale(0.85);
 `;
 
@@ -34,7 +34,7 @@ export const Pointer = styled.img`
 
 export const Wheel = () => {
   return (
-    <WheelContainer onClick={spinTheWheel}>
+    <WheelContainer>
       <Rewards id={getRewardsElementId()} src={rewards} />
       <Frame src={frame} />
       <Pointer src={pointer} />
