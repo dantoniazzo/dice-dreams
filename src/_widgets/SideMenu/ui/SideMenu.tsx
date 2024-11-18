@@ -1,8 +1,8 @@
 import { LargeText } from '_shared/ui';
-import { useState } from 'react';
 import modal6 from '/modal-6.png';
 import styled from 'styled-components';
 import modalCloseButton from '/modal-close-button.png';
+import { useAppSelector, useAppDispatch, setSliderOpen } from '_app/redux';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -59,9 +59,11 @@ const CloseButton = styled.img`
 `;
 
 export const SideMenu = () => {
-  const [open, setOpen] = useState(true);
-
-  const toggle = () => setOpen(!open);
+  const open = useAppSelector((state) => state.main.sliderOpen);
+  const dispatch = useAppDispatch();
+  const toggle = () => {
+    dispatch(setSliderOpen(!open));
+  };
   if (!open) return null;
   return (
     <MainContainer>

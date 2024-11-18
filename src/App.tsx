@@ -1,3 +1,5 @@
+import { Provider } from 'react-redux';
+import store from '_app/redux/store';
 import styled from 'styled-components';
 import background from '/background.jfif';
 import { Navbar } from '_widgets/Navbar';
@@ -30,16 +32,18 @@ const Content = styled.div`
 `;
 function App() {
   return (
-    <Router>
-      <AppContainer>
-        <Blur />
-        <Content className="no-scrollbar">
-          <Navbar />
-          <Game />
-          {/*  <Redeem /> */}
-        </Content>
-      </AppContainer>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <AppContainer>
+          <Blur />
+          <Content className="no-scrollbar">
+            <Navbar />
+            <Game />
+            {/*  <Redeem /> */}
+          </Content>
+        </AppContainer>
+      </Router>
+    </Provider>
   );
 }
 
