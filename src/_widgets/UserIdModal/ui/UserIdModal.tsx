@@ -71,13 +71,17 @@ export const InputText = styled.p`
 `;
 
 export const GoButton = styled.button`
-  background: linear-gradient(#959595, #5c5c5c);
+  background: ${(props) =>
+    props.disabled
+      ? 'linear-gradient(#959595, #5c5c5c)'
+      : 'linear-gradient(#68FF3C, #099400)'};
   border: none;
   border-left: 3px solid black;
   font-family: inherit;
   font-size: 1.2rem;
   color: #344767;
   flex: 2.5;
+  cursor: pointer;
 `;
 
 export const Confirmations = styled.div`
@@ -88,6 +92,7 @@ export const Confirmations = styled.div`
 `;
 
 export const UserIdModal = () => {
+  const [disabled, setDisabled] = useState(true);
   const [isPlayerIdInstruction, setIsPlayerIdInstructions] = useState(false);
   const navigate = useNavigate();
 
@@ -99,6 +104,10 @@ export const UserIdModal = () => {
     const value = e.target.value;
     if (value.length > 8) {
       e.target.value = value.slice(0, value.length - 1);
+    } else if (value.length === 8) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
     }
   };
   return (
@@ -113,7 +122,7 @@ export const UserIdModal = () => {
             <InputText>A</InputText>
           </InputTextContainer>
 
-          <GoButton>GO!</GoButton>
+          <GoButton disabled={disabled}>GO!</GoButton>
         </InputContainer>
         <SmallText
           onClick={togglePlayerIdInstructions}
