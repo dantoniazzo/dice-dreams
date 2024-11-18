@@ -13,7 +13,7 @@ import { PADDING, TOP } from '../lib/constants';
 import { useNavigate } from 'react-router-dom';
 import socialButtons from '/social-buttons.png';
 import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -43,6 +43,19 @@ export const IdInput = styled.input`
   font-size: 1.2rem;
   color: black;
   font-weight: bold;
+
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 `;
 
 export const InputText = styled.p`
@@ -81,6 +94,13 @@ export const UserIdModal = () => {
   const togglePlayerIdInstructions = () => {
     setIsPlayerIdInstructions(!isPlayerIdInstruction);
   };
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length > 8) {
+      e.target.value = value.slice(0, value.length - 1);
+    }
+  };
   return (
     <Modal>
       <ModalBackground src={modal1} />
@@ -89,7 +109,7 @@ export const UserIdModal = () => {
         <InputContainer>
           <InputTextContainer>
             <InputText>GD</InputText>
-            <IdInput />
+            <IdInput type="number" onChange={onInputChange} />
             <InputText>A</InputText>
           </InputTextContainer>
 
