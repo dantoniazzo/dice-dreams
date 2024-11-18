@@ -58,7 +58,11 @@ const TextContent = styled.div`
   align-items: flex-start;
 
   & > h1 {
+    cursor: pointer;
     font-size: 2.5rem;
+    &:hover {
+      color: #5d0e91;
+    }
   }
 `;
 
