@@ -6,15 +6,15 @@ import {
   ModalBackground,
   ModalContent,
   SmallText,
-} from '_shared/ui';
-import styled from 'styled-components';
-import modal1 from '/modal-1.png';
-import { PADDING, TOP } from '../lib/constants';
-import { useNavigate } from 'react-router-dom';
-import socialButtons from '/social-buttons.png';
-import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
-import { useState } from 'react';
-import { useFreeSpins } from '_features/free-spins';
+} from "_shared/ui";
+import styled from "styled-components";
+import modal1 from "/modal-1.png";
+import { PADDING, TOP } from "../lib/constants";
+import { useNavigate } from "react-router-dom";
+import socialButtons from "/social-buttons.png";
+import { IdInstructionsModal } from "_widgets/IdInstructionsModal";
+import { useState } from "react";
+import { useFreeSpins } from "_features/free-spins";
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -54,7 +54,7 @@ export const IdInput = styled.input`
     margin: 0;
   }
 
-  &[type='number'] {
+  &[type="number"] {
     -moz-appearance: textfield;
   }
 `;
@@ -74,8 +74,8 @@ export const InputText = styled.p`
 export const GoButton = styled.button`
   background: ${(props) =>
     props.disabled
-      ? 'linear-gradient(#959595, #5c5c5c)'
-      : 'linear-gradient(#68FF3C, #099400)'};
+      ? "linear-gradient(#959595, #5c5c5c)"
+      : "linear-gradient(#68FF3C, #099400)"};
   border: none;
   border-left: 3px solid black;
   font-family: inherit;
@@ -144,28 +144,26 @@ export const UserIdModal = () => {
           <Checkbox
             label={
               <>
-                I agree to the{' '}
+                I agree to the{" "}
                 <SmallText
                   textDecoration="underline"
-                  onClick={() => navigate('/terms-and-conditions')}
+                  onClick={() => navigate("/terms-and-conditions")}
                 >
                   Terms
                 </SmallText>
                 &nbsp;and&nbsp;
                 <SmallText
                   textDecoration="underline"
-                  onClick={() => navigate('/privacy-policy')}
+                  onClick={() => navigate("/privacy-policy")}
                 >
                   Privacy Policy
                 </SmallText>
               </>
             }
-            checked={true}
             onChange={() => void 0}
           />
           <Checkbox
             label={<>I confirm that I am 18 or older</>}
-            checked={true}
             onChange={() => void 0}
           />
         </Confirmations>
