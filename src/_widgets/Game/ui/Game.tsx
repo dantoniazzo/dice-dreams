@@ -22,8 +22,8 @@ export const Game = () => {
   const freeSpins = useAppSelector((state) => state.main.freeSpins);
   return (
     <GameContainer>
-      {!freeSpins && <UserIdModal />}
-      {!!freeSpins && <FreeSpinsModal />}
+      {freeSpins === undefined && <UserIdModal />}
+      {freeSpins !== undefined && <FreeSpinsModal />}
       <Wheel />
       <WinModal />
       <SideMenu />

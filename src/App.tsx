@@ -1,10 +1,10 @@
-import { Provider } from "react-redux";
-import store from "_app/redux/store";
 import styled from "styled-components";
 import background from "/background.jfif";
 import { Navbar } from "_widgets/Navbar";
 import { Game } from "_widgets/Game";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Redeem } from "_features/redeem";
+import { useAppSelector } from "_app/redux";
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -32,18 +32,23 @@ const Content = styled.div`
   overflow-y: auto;
 `;
 function App() {
+  const isRedeem = useAppSelector((state) => state.main.isRedeem);
   return (
-    <Provider store={store}>
-      <Router>
-        <AppContainer>
-          <Blur />
-          <Content className="no-scrollbar">
-            <Navbar />
-            <Game />
-          </Content>
-        </AppContainer>
-      </Router>
-    </Provider>
+    <Router>
+      <AppContainer>
+        <Blur />
+        <Content className="no-scrollbar">
+          {isRedeem ? (
+            <Redeem />
+          ) : (
+            <>
+              <Navbar />
+              <Game />
+            </>
+          )}
+        </Content>
+      </AppContainer>
+    </Router>
   );
 }
 

@@ -1,20 +1,29 @@
-import { Dialog, MediumText, ModalBackground, ModalContent } from '_shared/ui';
-import { Modal } from '_shared/ui';
-import modal2 from '/modal-2.png';
-import { PADDING, TOP } from '../lib/constants';
-import christmasDice from '/christmas-dice.png';
-import redeemButton from '/redeem-button.png';
-import { PrizeText, Image } from '_shared/ui';
-import { useAppSelector, useAppDispatch, setPrize } from '_app/redux';
-import { useEffect, useState } from 'react';
+import { Dialog, MediumText, ModalBackground, ModalContent } from "_shared/ui";
+import { Modal } from "_shared/ui";
+import modal2 from "/modal-2.png";
+import { PADDING, TOP } from "../lib/constants";
+import christmasDice from "/christmas-dice.png";
+import redeemButton from "/redeem-button.png";
+import { PrizeText, Image } from "_shared/ui";
+import {
+  useAppSelector,
+  useAppDispatch,
+  setPrize,
+  setIsRedeem,
+} from "_app/redux";
+import { useEffect, useState } from "react";
 
 export const WinModal = () => {
   const [open, setOpen] = useState(false);
   const prize = useAppSelector((state) => state.main.prize);
+  const freeSpins = useAppSelector((state) => state.main.freeSpins);
   const dispatch = useAppDispatch();
 
   const closeModal = () => {
     dispatch(setPrize(null));
+    if (freeSpins === 0) {
+      dispatch(setIsRedeem(true));
+    }
   };
 
   useEffect(() => {

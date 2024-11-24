@@ -1,7 +1,7 @@
-import logo from '/logo.png';
-import girlGizmo from '/girl-gizmo.png';
-import getButton from '/get-button.png';
-import styled from 'styled-components';
+import logo from "/logo.png";
+import girlGizmo from "/girl-gizmo.png";
+import getButton from "/get-button.png";
+import styled from "styled-components";
 
 export const RedeemContainer = styled.div`
   width: 100%;
@@ -50,7 +50,7 @@ export const Right = styled.div`
 export const GirlGizmo = styled.img`
   aspect-ratio: auto;
   width: 100%;
-  max-height: ${window.innerHeight}px;
+  max-height: ${window.innerHeight - 100}px;
   object-fit: contain;
   @media (max-width: 960px) {
     flex-direction: column;

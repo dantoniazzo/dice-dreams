@@ -1,16 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { Prizes } from '_entities/prize';
+import { createSlice } from "@reduxjs/toolkit";
+import { Prizes } from "_entities/prize";
 
 interface StoreProps {
   sliderOpen?: boolean;
   freeSpins?: number;
+  isRedeem?: boolean;
   prize: Prizes | null;
 }
 
 const initialState = { sliderOpen: false, prize: null } as StoreProps;
 
 export const mainSlice = createSlice({
-  name: 'main',
+  name: "main",
   initialState,
   reducers: {
     setSliderOpen: (state, action) => {
@@ -22,9 +23,13 @@ export const mainSlice = createSlice({
     setPrize: (state, action) => {
       state.prize = action.payload;
     },
+    setIsRedeem: (state, action) => {
+      state.isRedeem = action.payload;
+    },
   },
 });
 
-export const { setSliderOpen, setFreeSpins, setPrize } = mainSlice.actions;
+export const { setSliderOpen, setFreeSpins, setPrize, setIsRedeem } =
+  mainSlice.actions;
 
 export default mainSlice.reducer;
