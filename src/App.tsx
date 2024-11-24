@@ -1,10 +1,10 @@
-import { Provider } from 'react-redux';
-import store from '_app/redux/store';
-import styled from 'styled-components';
-import background from '/background.jfif';
-import { Navbar } from '_widgets/Navbar';
-import { Game } from '_widgets/Game';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from "react-redux";
+import store from "_app/redux/store";
+import styled from "styled-components";
+import background from "/background.jfif";
+import { Navbar } from "_widgets/Navbar";
+import { Game } from "_widgets/Game";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -25,6 +25,8 @@ const Content = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   left: 0;
   top: 0;
   overflow-y: auto;
