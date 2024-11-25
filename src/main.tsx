@@ -5,6 +5,12 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "_app/redux/store";
 
+declare global {
+  interface Window {
+    __WHEEL_CLICK_AUDIO__: HTMLAudioElement;
+    }
+  }
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
