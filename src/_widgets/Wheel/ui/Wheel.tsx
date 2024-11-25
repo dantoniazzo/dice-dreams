@@ -6,6 +6,7 @@ import santaGizmo from "/santa-gizmo.png";
 import freezeGizmo from "/freeze-gizmo.png";
 import { getRewardsElementId } from "../lib/rewards.element";
 import { DURATION_OF_SPIN } from "../lib/constants";
+import { playClick } from "_features/spin-wheel";
 
 export const WheelContainer = styled.div`
   position: relative;
@@ -45,7 +46,7 @@ export const FreezeGizmo = styled.img`
 
 export const Wheel = () => {
   return (
-    <WheelContainer>
+    <WheelContainer onClick={playClick}>
       <Rewards id={getRewardsElementId()} src={rewards} />
       <Frame src={frame} />
       <Pointer src={pointer} />

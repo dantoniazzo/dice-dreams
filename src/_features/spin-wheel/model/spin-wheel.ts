@@ -1,4 +1,4 @@
-import { getRewardsElement } from '_widgets/Wheel';
+import { getRewardsElement } from "_widgets/Wheel";
 
 export const NUM_OF_SPINS = 5;
 const baseDurationPerSpin = 1000; // 1 second per spin
@@ -12,13 +12,13 @@ const getCurrentRotation = () => {
   if (!rewardsElement) return 0;
   return parseInt(
     rewardsElement.style.transform.slice(
-      rewardsElement.style.transform.indexOf('rotate(') + 7,
-      rewardsElement.style.transform.indexOf('deg)')
+      rewardsElement.style.transform.indexOf("rotate(") + 7,
+      rewardsElement.style.transform.indexOf("deg)")
     )
   );
 };
 
-const playClick = () => {
+export const playClick = () => {
   window.__WHEEL_CLICK_AUDIO__.currentTime = 0;
   window.__WHEEL_CLICK_AUDIO__.play();
 };
@@ -67,7 +67,6 @@ const startAudio = (numOfSpins: number, spinDuration: number) => {
 };
 
 export const spinTheWheel = () => {
-  window.__WHEEL_CLICK_AUDIO__ = new Audio('/wheel-spin-click.wav');
   const visual = spinVisually();
   startTime = Date.now();
   if (visual && visual.finalNumOfSpins && visual.spinDuration)
