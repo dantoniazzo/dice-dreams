@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import background from "/background.jfif";
-import { Navbar } from "_widgets/Navbar";
-import { Game } from "_widgets/Game";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Redeem } from "_features/redeem";
-import { useAppSelector } from "_app/redux";
+import styled from 'styled-components';
+import background from '/background.jfif';
+import { Navbar } from '_widgets/Navbar';
+import { Game } from '_widgets/Game';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Redeem } from '_features/redeem';
+import { useAppSelector } from '_app/redux';
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -33,6 +33,16 @@ const Content = styled.div`
 `;
 function App() {
   const isRedeem = useAppSelector((state) => state.main.isRedeem);
+
+  function saveAudio() {
+    console.log('is active: ', navigator.userActivation.isActive);
+    if (!navigator.userActivation.isActive) {
+      window.__WHEEL_CLICK_AUDIO__ = new Audio('/wheel-spin-click.wav');
+      window.__WHEEL_CLICK_AUDIO__.play();
+    }
+  }
+  document.body.addEventListener('mousedown', saveAudio, true);
+  document.body.addEventListener('touchstart', saveAudio, true);
   return (
     <Router>
       <AppContainer>
