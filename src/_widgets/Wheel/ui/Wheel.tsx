@@ -17,6 +17,7 @@ export const Frame = styled.img`
   @media (max-width: ${MOBILE_SIZE}px) {
     width: 100%;
     height: auto;
+    top: 49%;
   }
 `;
 

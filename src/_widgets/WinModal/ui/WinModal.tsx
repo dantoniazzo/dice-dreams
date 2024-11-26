@@ -1,4 +1,4 @@
-import { Dialog, MediumText, ModalBackground, ModalContent } from "_shared/ui";
+import { Dialog, MediumText, ModalContent } from "_shared/ui";
 import { Modal } from "_shared/ui";
 import modal2 from "/modal-2.png";
 import { PADDING, TOP } from "../lib/constants";
@@ -33,7 +33,7 @@ export const WinModal = () => {
   return (
     <Dialog open={open} setOpen={setOpen}>
       <Modal>
-        <ModalBackground src={modal2} />
+        <Image src={modal2} />
         <ModalContent justifyContent="space-around" padding={PADDING} top={TOP}>
           <MediumText>You’ve Won</MediumText>
           <PrizeText>25 ROLLS</PrizeText>

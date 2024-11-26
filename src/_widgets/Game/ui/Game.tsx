@@ -27,6 +27,10 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: ${MOBILE_SIZE}px) {
+    width: 80%;
+  }
 `;
 
 export const Right = styled.div`
