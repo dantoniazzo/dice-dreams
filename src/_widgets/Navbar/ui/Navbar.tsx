@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import logo from '/logo.png';
-import hamburger from '/hamburger.png';
-import { PADDING } from '../lib/constants';
-import { Image } from '_shared/ui';
-import { useSliderMutation } from '_features/slider-mutation';
+import styled from "styled-components";
+import logo from "/logo.png";
+import hamburger from "/hamburger.png";
+import { PADDING } from "../lib/constants";
+import { Image } from "_shared/ui";
+import { useSliderMutation } from "_features/slider-mutation";
 
 export const SmallLogo = styled.img`
   width: 177px;
@@ -13,7 +13,7 @@ export const SmallLogo = styled.img`
 const NavbarContainer = styled.div`
   width: calc(100% - ${PADDING * 2}px);
   margin: ${PADDING}px;
-  height: fit-content;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;

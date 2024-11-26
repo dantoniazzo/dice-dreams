@@ -1,18 +1,19 @@
-import styled from 'styled-components';
-import modalCloseButton from '/modal-close-button.png';
+import styled from "styled-components";
+import modalCloseButton from "/modal-close-button.png";
 
 export const ModalContainer = styled.div`
   width: 350px;
-  height: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-radius: 60px;
   position: relative;
 `;
 
-export const ModalBackground = styled.img``;
+export const ModalBackground = styled.img`
+  height: 100%;
+`;
 
 export const ModalContent = styled.div<{
   padding: number;
@@ -29,12 +30,12 @@ export const ModalContent = styled.div<{
   border-radius: inherit;
   display: flex;
   flex-direction: column;
-  justify-content: ${(props) => props.justifyContent ?? 'space-between'};
-  align-items: ${(props) => props.alignItems ?? 'center'};
+  justify-content: ${(props) => props.justifyContent ?? "space-between"};
+  align-items: ${(props) => props.alignItems ?? "center"};
 `;
 
 interface ModalCloseButtonProps {
-  align: 'start' | 'end';
+  align: "start" | "end";
   onClick?: () => void;
 }
 
@@ -56,7 +57,7 @@ export const ModalCloseButton = (props: ModalCloseButtonProps) => {
   );
 };
 
-export const Modal = (props: React.ComponentProps<'div'>) => {
+export const Modal = (props: React.ComponentProps<"div">) => {
   const { children, ...rest } = props;
   return <ModalContainer {...rest}>{children}</ModalContainer>;
 };

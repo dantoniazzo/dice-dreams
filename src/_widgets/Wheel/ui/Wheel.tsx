@@ -2,33 +2,46 @@ import styled from "styled-components";
 import frame from "/wheel-frame.png";
 import rewards from "/wheel-rewards.png";
 import pointer from "/pointer.png";
-import santaGizmo from "/santa-gizmo.png";
-import freezeGizmo from "/freeze-gizmo.png";
 import { getRewardsElementId } from "../lib/rewards.element";
 import { DURATION_OF_SPIN } from "../lib/constants";
 
-export const WheelContainer = styled.div`
-  position: relative;
-`;
-
 export const Frame = styled.img`
-  width: 100%;
+  width: auto;
+  height: 100%;
   position: absolute;
-  left: 0;
-  top: -15px;
+  top: 47.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 960px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const Rewards = styled.img`
-  width: 100%;
+  width: auto;
+  height: 100%;
   transition: transform ${DURATION_OF_SPIN / 1000}s;
+  transform-origin: center;
   transform: scale(0.85);
+  @media (max-width: 960px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const Pointer = styled.img`
+  width: auto;
+  height: 20%;
   position: absolute;
   left: 50%;
-  top: calc(50% - 15px);
-  transform: translate(-50%, -50%);
+  top: 47.5%;
+  transform: translate(-52%, -50%);
+  @media (max-width: 960px) {
+    width: 20%;
+    height: auto;
+  }
 `;
 
 export const SantaGizmo = styled.img`
@@ -45,12 +58,10 @@ export const FreezeGizmo = styled.img`
 
 export const Wheel = () => {
   return (
-    <WheelContainer>
+    <>
       <Rewards id={getRewardsElementId()} src={rewards} />
       <Frame src={frame} />
       <Pointer src={pointer} />
-      <SantaGizmo src={santaGizmo} />
-      <FreezeGizmo src={freezeGizmo} />
-    </WheelContainer>
+    </>
   );
 };
