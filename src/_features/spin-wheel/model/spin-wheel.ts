@@ -14,7 +14,6 @@ const getCurrentRotation = () => {
 };
 
 export const playSpinSound = () => {
-  window.__WHEEL_SPIN_AUDIO__.currentTime = 0;
   window.__WHEEL_SPIN_AUDIO__.play();
 };
 
@@ -37,7 +36,9 @@ const spinVisually = () => {
 };
 
 export const spinTheWheel = () => {
-  const visual = spinVisually();
+  spinVisually();
   playSpinSound();
-  return visual;
+  setTimeout(() => {
+    window.__WHEEL_SPIN_AUDIO__.currentTime = 0;
+  }, window.__WHEEL_SPIN_AUDIO__.duration);
 };

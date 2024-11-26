@@ -36,6 +36,8 @@ function App() {
   const isRedeem = useAppSelector((state) => state.main.isRedeem);
 
   function saveAudio() {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    new AudioContext();
     window.__WHEEL_SPIN_AUDIO__ = new Audio("/wheel-spin-sound.mp3");
   }
   useEffect(() => {

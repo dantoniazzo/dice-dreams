@@ -20,7 +20,7 @@ export const Frame = styled.img`
 
 export const Rewards = styled.img`
   width: 100%;
-  transition: transform ${DURATION_OF_SPIN}s;
+  transition: transform ${DURATION_OF_SPIN / 1000}s;
   transform: scale(0.85);
 `;
 

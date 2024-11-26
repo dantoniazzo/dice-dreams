@@ -1,1 +1,1 @@
-export const DURATION_OF_SPIN = 5;
+export const DURATION_OF_SPIN = 2500;

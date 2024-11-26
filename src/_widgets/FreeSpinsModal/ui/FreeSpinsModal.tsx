@@ -23,13 +23,13 @@ export const FreeSpinsModal = () => {
   const dispatch = useAppDispatch();
   const spin = () => {
     if (freeSpins && freeSpins > 0) {
-      const values = spinTheWheel();
+      spinTheWheel();
       dispatch(setFreeSpins(freeSpins - 1));
       setDisabled(true);
       setTimeout(() => {
         dispatch(setPrize(Prizes.JACKPOT));
         setDisabled(false);
-      }, values?.spinDuration || DURATION_OF_SPIN);
+      }, DURATION_OF_SPIN);
     }
   };
   return (
