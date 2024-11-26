@@ -7,7 +7,7 @@ import store from "_app/redux/store";
 
 declare global {
   interface Window {
-    __WHEEL_CLICK_AUDIO__: HTMLAudioElement;
+    __WHEEL_SPIN_AUDIO__: HTMLAudioElement;
   }
 }
 
