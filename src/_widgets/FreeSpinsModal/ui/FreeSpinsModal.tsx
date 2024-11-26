@@ -10,25 +10,27 @@ import modal3 from "/modal-3.png";
 import { PADDING, TOP } from "../lib/constants";
 import spinButton from "/spin-button.png";
 import gizmo from "/gizmo.png";
-import { setPrize, useAppSelector } from "_app/redux";
+import { setIsSpinning, setPrize, useAppSelector } from "_app/redux";
 import { spinTheWheel } from "_features/spin-wheel";
 import { useAppDispatch, setFreeSpins } from "_app/redux";
-import { useState } from "react";
 import { DURATION_OF_SPIN } from "_widgets/Wheel";
 import { Prizes } from "_entities/prize";
 
 export const FreeSpinsModal = () => {
-  const [disabled, setDisabled] = useState(false);
+  const isSpinning = useAppSelector((state) => state.main.isSpinning);
   const freeSpins = useAppSelector((state) => state.main.freeSpins);
   const dispatch = useAppDispatch();
   const spin = () => {
     if (freeSpins && freeSpins > 0) {
-      spinTheWheel();
+      dispatch(setIsSpinning(true));
+      setTimeout(() => {
+        spinTheWheel();
+      });
+
       dispatch(setFreeSpins(freeSpins - 1));
-      setDisabled(true);
       setTimeout(() => {
         dispatch(setPrize(Prizes.JACKPOT));
-        setDisabled(false);
+        dispatch(setIsSpinning(false));
       }, DURATION_OF_SPIN);
     }
   };
@@ -41,9 +43,9 @@ export const FreeSpinsModal = () => {
         <LargeText>FREE SPINS</LargeText>
         <Image
           onClick={() => {
-            if (!disabled) spin();
+            if (!isSpinning) spin();
           }}
-          cursor={!disabled ? "pointer" : ""}
+          cursor={!isSpinning ? "pointer" : ""}
           src={spinButton}
         />
         <Image src={gizmo} />

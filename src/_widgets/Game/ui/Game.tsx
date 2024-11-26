@@ -7,6 +7,7 @@ import { SideMenu } from "_widgets/SideMenu";
 import { useAppSelector } from "_app/redux";
 import santaGizmo from "/santa-gizmo.png";
 import freezeGizmo from "/freeze-gizmo.png";
+import { MOBILE_SIZE, useMobileDetector } from "_shared/lib";
 
 export const GameContainer = styled.div`
   width: 100%;
@@ -14,7 +15,7 @@ export const GameContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     flex-direction: column;
     align-items: center;
   }
@@ -36,7 +37,7 @@ export const Right = styled.div`
   justify-content: center;
   position: relative;
 
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     width: 80%;
   }
 `;
@@ -49,7 +50,7 @@ export const GizmosContainer = styled.div`
   align-items: flex-end;
   position: absolute;
 
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     display: none;
   }
 `;
@@ -58,20 +59,44 @@ export const LeftGizmo = styled.img``;
 export const RightGizmo = styled.img``;
 export const Game = () => {
   const freeSpins = useAppSelector((state) => state.main.freeSpins);
+  const isSpinning = useAppSelector((state) => state.main.isSpinning);
+  const _mobileDetector = useMobileDetector();
+
+  const renderModal = () => {
+    if (
+      (_mobileDetector.isMobile() && !isSpinning) ||
+      !_mobileDetector.isMobile()
+    ) {
+      return (
+        <Left>
+          {freeSpins === undefined && <UserIdModal />}
+          {freeSpins !== undefined && <FreeSpinsModal />}
+        </Left>
+      );
+    }
+  };
+
+  const renderWheel = () => {
+    if (
+      (_mobileDetector.isMobile() && isSpinning) ||
+      !_mobileDetector.isMobile()
+    ) {
+      return (
+        <Right>
+          <Wheel />
+          <GizmosContainer>
+            <LeftGizmo src={santaGizmo} />
+            <RightGizmo src={freezeGizmo} />
+          </GizmosContainer>
+        </Right>
+      );
+    }
+  };
+
   return (
     <GameContainer>
-      <Left>
-        {freeSpins === undefined && <UserIdModal />}
-        {freeSpins !== undefined && <FreeSpinsModal />}
-      </Left>
-      <Right>
-        <Wheel />
-        <GizmosContainer>
-          <LeftGizmo src={santaGizmo} />
-          <RightGizmo src={freezeGizmo} />
-        </GizmosContainer>
-      </Right>
-
+      {renderModal()}
+      {renderWheel()}
       <WinModal />
       <SideMenu />
     </GameContainer>

@@ -4,6 +4,7 @@ import rewards from "/wheel-rewards.png";
 import pointer from "/pointer.png";
 import { getRewardsElementId } from "../lib/rewards.element";
 import { DURATION_OF_SPIN } from "../lib/constants";
+import { MOBILE_SIZE } from "_shared/lib";
 
 export const Frame = styled.img`
   width: auto;
@@ -13,7 +14,7 @@ export const Frame = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     width: 100%;
     height: auto;
   }
@@ -25,7 +26,7 @@ export const Rewards = styled.img`
   transition: transform ${DURATION_OF_SPIN / 1000}s;
   transform-origin: center;
   transform: scale(0.85);
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     width: 100%;
     height: auto;
   }
@@ -38,7 +39,7 @@ export const Pointer = styled.img`
   left: 50%;
   top: 47.5%;
   transform: translate(-52%, -50%);
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     width: 20%;
     height: auto;
   }

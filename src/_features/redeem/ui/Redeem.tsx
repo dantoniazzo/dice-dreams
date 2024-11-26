@@ -2,12 +2,13 @@ import logo from "/logo.png";
 import girlGizmo from "/girl-gizmo.png";
 import getButton from "/get-button.png";
 import styled from "styled-components";
+import { MOBILE_SIZE } from "_shared/lib";
 
 export const RedeemContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     flex-direction: column;
     gap: 2rem;
   }
@@ -28,7 +29,7 @@ export const Left = styled.div`
   justify-content: center;
   margin-bottom: 15rem;
 
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     flex: 1;
     margin-bottom: 0;
   }
@@ -41,7 +42,7 @@ export const Right = styled.div`
   justify-content: center;
   flex: 4;
 
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     align-items: flex-start;
     margin-top: 0;
   }
@@ -52,7 +53,7 @@ export const GirlGizmo = styled.img`
   width: 100%;
   max-height: ${window.innerHeight - 100}px;
   object-fit: contain;
-  @media (max-width: 960px) {
+  @media (max-width: ${MOBILE_SIZE}px) {
     flex-direction: column;
     width: 70%;
   }

@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { LargeText } from '_shared/ui';
-import modal6 from '/modal-6.png';
-import modal6bottom from '/modal-6-bottom.png';
-import styled from 'styled-components';
-import modalCloseButton from '/modal-close-button.png';
-import { useAppSelector } from '_app/redux';
-import { useOnClickOutside } from 'usehooks-ts';
-import { useRef } from 'react';
-import { useSliderMutation } from '_features/slider-mutation';
-import { HowToModal } from '_widgets/HowToModal';
-import { getHowToModalElement } from '_widgets/HowToModal';
+import { useState } from "react";
+import { LargeText } from "_shared/ui";
+import modal6 from "/modal-6.png";
+import modal6bottom from "/modal-6-bottom.png";
+import styled from "styled-components";
+import modalCloseButton from "/modal-close-button.png";
+import { useAppSelector } from "_app/redux";
+import { useOnClickOutside } from "usehooks-ts";
+import { useRef } from "react";
+import { useSliderMutation } from "_features/slider-mutation";
+import { HowToModal } from "_widgets/HowToModal";
+import { getHowToModalElement } from "_widgets/HowToModal";
+import { MOBILE_SIZE } from "_shared/lib";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -46,6 +47,10 @@ const SideMenuContentContainer = styled.div`
   background-position: bottom;
   border: 3px solid white;
   border-top-left-radius: 60px;
+
+  @media (max-width: ${MOBILE_SIZE}px) {
+    width: 100%;
+  }
 `;
 
 const SideMenuContent = styled.div`

@@ -6,6 +6,7 @@ interface StoreProps {
   freeSpins?: number;
   isRedeem?: boolean;
   prize: Prizes | null;
+  isSpinning?: boolean;
 }
 
 const initialState = { sliderOpen: false, prize: null } as StoreProps;
@@ -26,10 +27,18 @@ export const mainSlice = createSlice({
     setIsRedeem: (state, action) => {
       state.isRedeem = action.payload;
     },
+    setIsSpinning: (state, action) => {
+      state.isSpinning = action.payload;
+    },
   },
 });
 
-export const { setSliderOpen, setFreeSpins, setPrize, setIsRedeem } =
-  mainSlice.actions;
+export const {
+  setSliderOpen,
+  setFreeSpins,
+  setPrize,
+  setIsRedeem,
+  setIsSpinning,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;
