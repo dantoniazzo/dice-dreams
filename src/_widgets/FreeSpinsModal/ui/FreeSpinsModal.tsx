@@ -15,11 +15,13 @@ import { spinTheWheel } from "_features/spin-wheel";
 import { useAppDispatch, setFreeSpins } from "_app/redux";
 import { DURATION_OF_SPIN } from "_widgets/Wheel";
 import { Prizes } from "_entities/prize";
+import { useSpinWheelMutation } from "_features/spin-wheel";
 
 export const FreeSpinsModal = () => {
   const isSpinning = useAppSelector((state) => state.main.isSpinning);
   const freeSpins = useAppSelector((state) => state.main.freeSpins);
   const dispatch = useAppDispatch();
+  const [handleSpinWheel] = useSpinWheelMutation();
   const spin = () => {
     if (freeSpins && freeSpins > 0) {
       dispatch(setIsSpinning(true));

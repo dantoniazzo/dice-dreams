@@ -18,6 +18,7 @@ import { useFreeSpins } from "_features/free-spins";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useLazyGetPlayerQuery } from "_entities/player";
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -106,6 +107,7 @@ const schema = yup
   .required();
 
 export const UserIdModal = () => {
+  const [handlePlayer] = useLazyGetPlayerQuery();
   const [isPlayerIdInstruction, setIsPlayerIdInstructions] = useState(false);
   const navigate = useNavigate();
   const _freeSpins = useFreeSpins();
@@ -122,7 +124,13 @@ export const UserIdModal = () => {
     playerId?: string;
     terms?: boolean;
     age?: boolean;
-  }> = (data) => {
+  }> = async (data) => {
+    try {
+      if (!data.playerId) return;
+      await handlePlayer(data.playerId);
+    } catch (error) {
+      console.error(error);
+    }
     console.log(data);
     _freeSpins.generateFreeSpins();
   };
