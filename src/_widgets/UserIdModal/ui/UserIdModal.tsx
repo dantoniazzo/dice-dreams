@@ -15,6 +15,9 @@ import socialButtons from "/social-buttons.png";
 import { IdInstructionsModal } from "_widgets/IdInstructionsModal";
 import { useState } from "react";
 import { useFreeSpins } from "_features/free-spins";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -92,84 +95,122 @@ export const Confirmations = styled.div`
   align-items: flex-start;
 `;
 
+const schema = yup
+  .object({
+    playerId: yup.string().required("Please provide your player ID"),
+    terms: yup
+      .boolean()
+      .oneOf([true], "You must accept terms and conditions and privacy policy"),
+    age: yup.boolean().oneOf([true], "You must be 18 or older"),
+  })
+  .required();
+
 export const UserIdModal = () => {
-  const [disabled, setDisabled] = useState(true);
   const [isPlayerIdInstruction, setIsPlayerIdInstructions] = useState(false);
   const navigate = useNavigate();
   const _freeSpins = useFreeSpins();
+  const { control, handleSubmit, formState } = useForm({
+    defaultValues: {
+      terms: false,
+      age: false,
+    },
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+
+  const onSubmit: SubmitHandler<{
+    playerId?: string;
+    terms?: boolean;
+    age?: boolean;
+  }> = (data) => {
+    console.log(data);
+    _freeSpins.generateFreeSpins();
+  };
 
   const togglePlayerIdInstructions = () => {
     setIsPlayerIdInstructions(!isPlayerIdInstruction);
   };
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value.length > 8) {
-      e.target.value = value.slice(0, value.length - 1);
-    } else if (value.length === 8) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
-
   return (
     <Modal>
       <ModalBackground src={modal1} />
-      <ModalContent padding={PADDING} top={TOP}>
-        <LargeText>ENTER YOUR PLAYER ID</LargeText>
-        <InputContainer>
-          <InputTextContainer>
-            <InputText>GD</InputText>
-            <IdInput type="number" onChange={onInputChange} />
-            <InputText>A</InputText>
-          </InputTextContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <ModalContent padding={PADDING} top={TOP}>
+          <LargeText>ENTER YOUR PLAYER ID</LargeText>
+          <Controller
+            name="playerId"
+            control={control}
+            render={({ field }) => (
+              <InputContainer>
+                <InputTextContainer>
+                  <InputText>GD</InputText>
+                  <IdInput type="text" {...field} />
+                  <InputText>A</InputText>
+                </InputTextContainer>
 
-          <GoButton onClick={_freeSpins.generateFreeSpins} disabled={disabled}>
-            GO!
-          </GoButton>
-        </InputContainer>
-        <SmallText
-          onClick={togglePlayerIdInstructions}
-          textDecoration="underline"
-          cursor="pointer"
-        >
-          Where is my Player ID?
-        </SmallText>
-        <IdInstructionsModal
-          open={isPlayerIdInstruction}
-          setOpen={setIsPlayerIdInstructions}
-        />
-        <Confirmations>
-          <Checkbox
-            label={
-              <>
-                I agree to the{" "}
-                <SmallText
-                  textDecoration="underline"
-                  onClick={() => navigate("/terms-and-conditions")}
-                >
-                  Terms
-                </SmallText>
-                &nbsp;and&nbsp;
-                <SmallText
-                  textDecoration="underline"
-                  onClick={() => navigate("/privacy-policy")}
-                >
-                  Privacy Policy
-                </SmallText>
-              </>
-            }
-            onChange={() => void 0}
+                <GoButton type="submit" disabled={!formState.isValid}>
+                  GO!
+                </GoButton>
+              </InputContainer>
+            )}
+          ></Controller>
+
+          <SmallText
+            onClick={togglePlayerIdInstructions}
+            textDecoration="underline"
+            cursor="pointer"
+          >
+            Where is my Player ID?
+          </SmallText>
+          <IdInstructionsModal
+            open={isPlayerIdInstruction}
+            setOpen={setIsPlayerIdInstructions}
           />
-          <Checkbox
-            label={<>I confirm that I am 18 or older</>}
-            onChange={() => void 0}
-          />
-        </Confirmations>
-        <LargeText top="1rem">NOT A PLAYER YET?</LargeText>
-        <Image src={socialButtons} />
-      </ModalContent>
+          <Confirmations>
+            <Controller
+              name="terms"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  label={
+                    <>
+                      I agree to the{" "}
+                      <SmallText
+                        textDecoration="underline"
+                        onClick={() => navigate("/terms-and-conditions")}
+                      >
+                        Terms
+                      </SmallText>
+                      &nbsp;and&nbsp;
+                      <SmallText
+                        textDecoration="underline"
+                        onClick={() => navigate("/privacy-policy")}
+                      >
+                        Privacy Policy
+                      </SmallText>
+                    </>
+                  }
+                  checked={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            ></Controller>
+            <Controller
+              name="age"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  label={<>I confirm that I am 18 or older</>}
+                  checked={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            ></Controller>
+          </Confirmations>
+          <LargeText top="1rem">NOT A PLAYER YET?</LargeText>
+          <Image src={socialButtons} />
+        </ModalContent>
+      </form>
     </Modal>
   );
 };
