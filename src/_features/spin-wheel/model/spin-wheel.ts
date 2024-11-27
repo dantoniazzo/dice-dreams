@@ -36,7 +36,10 @@ const spinVisually = () => {
 };
 
 export const spinTheWheel = () => {
-  spinVisually();
+  // We need CSS to see rendered element before calculating spin, so we do it async with setTimeout
+  setTimeout(() => {
+    spinVisually();
+  });
   playSpinSound();
   setTimeout(() => {
     window.__WHEEL_SPIN_AUDIO__.currentTime = 0;
