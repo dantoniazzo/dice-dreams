@@ -21,22 +21,21 @@ export const GameContainer = styled.div`
   }
 `;
 
-export const Left = styled.div`
+export const Left = styled.div<{ show?: boolean }>`
   width: 40%;
   height: 100%;
-  display: flex;
+  display: ${(props) => (props.show === false ? "none" : "flex")};
   align-items: center;
   justify-content: center;
-
   @media (max-width: ${MOBILE_SIZE}px) {
     width: 80%;
   }
 `;
 
-export const Right = styled.div`
+export const Right = styled.div<{ show?: boolean }>`
   width: 60%;
   height: 100%;
-  display: flex;
+  display: ${(props) => (props.show === false ? "none" : "flex")};
   align-items: center;
   justify-content: center;
   position: relative;
@@ -67,34 +66,34 @@ export const Game = () => {
   const _mobileDetector = useMobileDetector();
 
   const renderModal = () => {
-    if (
-      (_mobileDetector.isMobile() && !isSpinning) ||
-      !_mobileDetector.isMobile()
-    ) {
-      return (
-        <Left>
-          {freeSpins === undefined && <UserIdModal />}
-          {freeSpins !== undefined && <FreeSpinsModal />}
-        </Left>
-      );
-    }
+    return (
+      <Left
+        show={
+          (_mobileDetector.isMobile() && !isSpinning) ||
+          !_mobileDetector.isMobile()
+        }
+      >
+        {freeSpins === undefined && <UserIdModal />}
+        {freeSpins !== undefined && <FreeSpinsModal />}
+      </Left>
+    );
   };
 
   const renderWheel = () => {
-    if (
-      (_mobileDetector.isMobile() && isSpinning) ||
-      !_mobileDetector.isMobile()
-    ) {
-      return (
-        <Right>
-          <Wheel />
-          <GizmosContainer>
-            <LeftGizmo src={santaGizmo} />
-            <RightGizmo src={freezeGizmo} />
-          </GizmosContainer>
-        </Right>
-      );
-    }
+    return (
+      <Right
+        show={
+          (_mobileDetector.isMobile() && isSpinning) ||
+          !_mobileDetector.isMobile()
+        }
+      >
+        <Wheel />
+        <GizmosContainer>
+          <LeftGizmo src={santaGizmo} />
+          <RightGizmo src={freezeGizmo} />
+        </GizmosContainer>
+      </Right>
+    );
   };
 
   return (
