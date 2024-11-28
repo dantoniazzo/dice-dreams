@@ -46,11 +46,11 @@ export const FreeSpinsModal = () => {
         dispatch(setPrize(data?.prize));
         await handlePlayer(data?.player.playerId || '');
         spinTheWheel();
+        setTimeout(() => {
+          dispatch(setPrizeModalOpened(true));
+          dispatch(setIsSpinning(false));
+        }, DURATION_OF_SPIN);
       });
-      setTimeout(() => {
-        dispatch(setPrizeModalOpened(true));
-        dispatch(setIsSpinning(false));
-      }, DURATION_OF_SPIN);
     }
   };
   return (
