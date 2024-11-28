@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import frame from "/wheel-frame.png";
-import rewards from "/wheel-rewards.png";
-import pointer from "/pointer.png";
-import { getRewardsElementId } from "../lib/rewards.element";
-import { DURATION_OF_SPIN } from "../lib/constants";
-import { MOBILE_SIZE } from "_shared/lib";
+import styled from 'styled-components';
+import frame from '/wheel-frame.png';
+import rewards from '/wheel-rewards.png';
+import pointer from '/pointer.png';
+import { getRewardsElementId } from '../lib/rewards.element';
+import { DURATION_OF_SPIN } from '../lib/constants';
+import { MOBILE_SIZE } from '_shared/lib';
 
 export const Frame = styled.img`
   width: auto;
@@ -26,7 +26,7 @@ export const Rewards = styled.img`
   height: 100%;
   transition: transform ${DURATION_OF_SPIN / 1000}s;
   transform-origin: center;
-  transform: scale(0.85);
+  transform: scale(0.85) rotate(22.5deg);
   @media (max-width: ${MOBILE_SIZE}px) {
     width: 100%;
     height: auto;

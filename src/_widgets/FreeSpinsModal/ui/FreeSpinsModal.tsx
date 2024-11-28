@@ -35,6 +35,13 @@ export const FreeSpinsModal = () => {
   const _spins = useSpins();
   const [handlePlayer] = useLazyGetPlayerQuery();
 
+  const getSpinDelta = (from: number, to: number) => {
+    const delta = to - from;
+    const middle = from + delta / 2;
+    const spinDelta = middle / 360;
+    return spinDelta;
+  };
+
   const [handleSpinWheel] = useSpinWheelMutation();
   const spin = async () => {
     if (!playerId) return;
@@ -45,7 +52,11 @@ export const FreeSpinsModal = () => {
         const { data } = await handleSpinWheel({ playerId });
         dispatch(setPrize(data?.prize));
         await handlePlayer(data?.player.playerId || '');
-        spinTheWheel();
+        const from = data?.prize.angle.from;
+        const to = data?.prize.angle.to;
+        if (from && to && from > 0 && to > 0) {
+          spinTheWheel(getSpinDelta(from, to));
+        }
         setTimeout(() => {
           dispatch(setPrizeModalOpened(true));
           dispatch(setIsSpinning(false));
