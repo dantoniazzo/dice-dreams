@@ -128,6 +128,7 @@ export const UserIdModal = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { control, handleSubmit, formState } = useForm({
+    disabled: false,
     defaultValues: {
       terms: false,
       age: false,
@@ -153,6 +154,26 @@ export const UserIdModal = () => {
     setIsPlayerIdInstructions(!isPlayerIdInstruction);
   };
 
+  // Restrict input and pasting to 6 characters
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    if ((e.target as HTMLInputElement).value.length > 6) {
+      (e.target as HTMLInputElement).value = (
+        e.target as HTMLInputElement
+      ).value.slice(0, 6); // Trim to 6 chars
+    } else {
+      setErrorMsg(null);
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const pastedText = e.clipboardData.getData('text');
+    if (pastedText.length > 6) {
+      setErrorMsg('Player ID must be 6 characters long');
+      e.preventDefault();
+      (e.target as HTMLInputElement).value = pastedText.slice(0, 0);
+    }
+  };
+
   return (
     <Modal>
       <ModalBackground src={modal1} />
@@ -167,7 +188,12 @@ export const UserIdModal = () => {
               <InputContainer>
                 <InputTextContainer>
                   <InputText>GD</InputText>
-                  <IdInput type="text" {...field} />
+                  <IdInput
+                    type="text"
+                    {...field}
+                    onInput={handleInput}
+                    onPaste={handlePaste}
+                  />
                   <InputText>A</InputText>
                 </InputTextContainer>
 
