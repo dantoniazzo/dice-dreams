@@ -65,15 +65,14 @@ function App() {
       <AppContainer>
         <Blur />
         <Content className="no-scrollbar">
-          <Redeem />
-          {/* {isRedeem ? (
+          {isRedeem ? (
             <Redeem />
           ) : (
             <>
               <Navbar />
               <Game />
             </>
-          )} */}
+          )}
         </Content>
       </AppContainer>
     </Router>
