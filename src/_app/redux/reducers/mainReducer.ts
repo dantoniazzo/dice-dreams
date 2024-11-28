@@ -1,28 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Prizes } from "_entities/prize";
+import { createSlice } from '@reduxjs/toolkit';
+import { Prize } from '_entities/prize';
 
 interface StoreProps {
   sliderOpen?: boolean;
-  freeSpins?: number;
   isRedeem?: boolean;
-  prize: Prizes | null;
   isSpinning?: boolean;
+  playerId?: string;
+  prize?: Prize;
+  prizeModalOpened?: boolean;
 }
 
-const initialState = { sliderOpen: false, prize: null } as StoreProps;
+const initialState = { sliderOpen: false } as StoreProps;
 
 export const mainSlice = createSlice({
-  name: "main",
+  name: 'main',
   initialState,
   reducers: {
     setSliderOpen: (state, action) => {
       state.sliderOpen = action.payload;
-    },
-    setFreeSpins: (state, action) => {
-      state.freeSpins = action.payload;
-    },
-    setPrize: (state, action) => {
-      state.prize = action.payload;
     },
     setIsRedeem: (state, action) => {
       state.isRedeem = action.payload;
@@ -30,15 +25,25 @@ export const mainSlice = createSlice({
     setIsSpinning: (state, action) => {
       state.isSpinning = action.payload;
     },
+    setPlayerId: (state, action) => {
+      state.playerId = action.payload;
+    },
+    setPrizeModalOpened: (state, action) => {
+      state.prizeModalOpened = action.payload;
+    },
+    setPrize: (state, action) => {
+      state.prize = action.payload;
+    },
   },
 });
 
 export const {
   setSliderOpen,
-  setFreeSpins,
-  setPrize,
   setIsRedeem,
   setIsSpinning,
+  setPlayerId,
+  setPrizeModalOpened,
+  setPrize,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

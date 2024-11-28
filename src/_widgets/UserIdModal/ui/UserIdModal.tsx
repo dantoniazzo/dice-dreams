@@ -6,19 +6,20 @@ import {
   ModalBackground,
   ModalContent,
   SmallText,
-} from "_shared/ui";
-import styled from "styled-components";
-import modal1 from "/modal-1.png";
-import { PADDING, TOP } from "../lib/constants";
-import { useNavigate } from "react-router-dom";
-import socialButtons from "/social-buttons.png";
-import { IdInstructionsModal } from "_widgets/IdInstructionsModal";
-import { useState } from "react";
-import { useFreeSpins } from "_features/free-spins";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useLazyGetPlayerQuery } from "_entities/player";
+} from '_shared/ui';
+import styled from 'styled-components';
+import modal1 from '/modal-1.png';
+import { PADDING, TOP } from '../lib/constants';
+import { useNavigate } from 'react-router-dom';
+import socialButtons from '/social-buttons.png';
+import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
+import { useState } from 'react';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useLazyGetPlayerQuery } from '_entities/player';
+import { useAppDispatch, setPlayerId } from '_app/redux';
+import { IErrorResponse } from '_shared/model/types';
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -58,7 +59,7 @@ export const IdInput = styled.input`
     margin: 0;
   }
 
-  &[type="number"] {
+  &[type='number'] {
     -moz-appearance: textfield;
   }
 `;
@@ -78,8 +79,8 @@ export const InputText = styled.p`
 export const GoButton = styled.button`
   background: ${(props) =>
     props.disabled
-      ? "linear-gradient(#959595, #5c5c5c)"
-      : "linear-gradient(#68FF3C, #099400)"};
+      ? 'linear-gradient(#959595, #5c5c5c)'
+      : 'linear-gradient(#68FF3C, #099400)'};
   border: none;
   border-left: 3px solid black;
   font-family: inherit;
@@ -98,26 +99,27 @@ export const Confirmations = styled.div`
 
 const schema = yup
   .object({
-    playerId: yup.string().required("Please provide your player ID"),
+    playerId: yup.string().required('Please provide your player ID'),
     terms: yup
       .boolean()
-      .oneOf([true], "You must accept terms and conditions and privacy policy"),
-    age: yup.boolean().oneOf([true], "You must be 18 or older"),
+      .oneOf([true], 'You must accept terms and conditions and privacy policy'),
+    age: yup.boolean().oneOf([true], 'You must be 18 or older'),
   })
   .required();
 
 export const UserIdModal = () => {
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [handlePlayer] = useLazyGetPlayerQuery();
   const [isPlayerIdInstruction, setIsPlayerIdInstructions] = useState(false);
   const navigate = useNavigate();
-  const _freeSpins = useFreeSpins();
+  const dispatch = useAppDispatch();
   const { control, handleSubmit, formState } = useForm({
     defaultValues: {
       terms: false,
       age: false,
     },
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<{
@@ -125,14 +127,12 @@ export const UserIdModal = () => {
     terms?: boolean;
     age?: boolean;
   }> = async (data) => {
-    try {
-      if (!data.playerId) return;
-      await handlePlayer(data.playerId);
-    } catch (error) {
-      console.error(error);
+    if (!data.playerId) return;
+    dispatch(setPlayerId(data.playerId));
+    const response = await handlePlayer(data.playerId, true);
+    if (response.error) {
+      setErrorMsg((response.error as IErrorResponse).data.detail);
     }
-    console.log(data);
-    _freeSpins.generateFreeSpins();
   };
 
   const togglePlayerIdInstructions = () => {
@@ -162,7 +162,11 @@ export const UserIdModal = () => {
               </InputContainer>
             )}
           ></Controller>
-
+          {errorMsg && (
+            <SmallText textAlign="center" color="red">
+              {errorMsg}
+            </SmallText>
+          )}
           <SmallText
             onClick={togglePlayerIdInstructions}
             textDecoration="underline"
@@ -182,17 +186,17 @@ export const UserIdModal = () => {
                 <Checkbox
                   label={
                     <>
-                      I agree to the{" "}
+                      I agree to the{' '}
                       <SmallText
                         textDecoration="underline"
-                        onClick={() => navigate("/terms-and-conditions")}
+                        onClick={() => navigate('/terms-and-conditions')}
                       >
                         Terms
                       </SmallText>
                       &nbsp;and&nbsp;
                       <SmallText
                         textDecoration="underline"
-                        onClick={() => navigate("/privacy-policy")}
+                        onClick={() => navigate('/privacy-policy')}
                       >
                         Privacy Policy
                       </SmallText>

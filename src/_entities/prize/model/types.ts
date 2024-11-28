@@ -1,4 +1,8 @@
-export enum Prizes {
-  JACKPOT = 'jackpot',
-  ROLLS = 'rolls',
+export interface Prize {
+  id: string;
+  name: string;
+  angle: {
+    from: number;
+    to: number;
+  };
 }

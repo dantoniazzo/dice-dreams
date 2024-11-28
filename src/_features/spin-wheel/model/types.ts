@@ -1,3 +1,5 @@
+import { Prize } from '_entities/prize';
+
 export interface WheelSpinRequest {
   playerId: string;
 }
@@ -8,12 +10,5 @@ export interface WheelSpinResponse {
     totalSpins: number;
     usedSpins: number;
   };
-  prize: {
-    id: string;
-    name: string;
-    angle: {
-      from: number;
-      to: number;
-    };
-  };
+  prize: Prize;
 }

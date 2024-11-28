@@ -20,8 +20,12 @@ export const MediumText = styled.h4<{ textAlign?: string }>`
 
 export const SmallText = styled.span<{
   textDecoration?: string;
+  textAlign?: string;
   cursor?: string;
+  color?: string;
 }>`
+  text-align: ${(props) => props.textAlign || 'left'};
   text-decoration: ${(props) => props.textDecoration || 'none'};
   cursor: ${(props) => props.cursor};
+  color: ${(props) => props.color || 'white'};
 `;

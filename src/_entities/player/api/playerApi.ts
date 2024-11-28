@@ -1,5 +1,5 @@
-import { baseApi, TAGS } from "_shared/api";
-import { PlayerResponse } from "../model/types";
+import { baseApi, TAGS } from '_shared/api';
+import { PlayerResponse } from '../model/types';
 
 export const playerApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -10,4 +10,4 @@ export const playerApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLazyGetPlayerQuery } = playerApi;
+export const { useLazyGetPlayerQuery, useGetPlayerQuery } = playerApi;
