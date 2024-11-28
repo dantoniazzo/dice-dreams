@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import background from "/background.jfif";
-import { Navbar } from "_widgets/Navbar";
-import { Game } from "_widgets/Game";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Redeem } from "_features/redeem";
-import { useAppSelector } from "_app/redux";
-import { useEffect } from "react";
+import styled from 'styled-components';
+import background from '/background.jfif';
+import { Navbar } from '_widgets/Navbar';
+import { Game } from '_widgets/Game';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Redeem } from '_features/redeem';
+import { useAppSelector } from '_app/redux';
+import { useEffect } from 'react';
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -38,10 +38,26 @@ function App() {
   function saveAudio() {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     new AudioContext();
-    window.__WHEEL_SPIN_AUDIO__ = new Audio("/wheel-spin-sound.mp3");
+    window.__WHEEL_SPIN_AUDIO__ = new Audio('/wheel-spin-sound.mp3');
+    window.__BACKGROUND_AUDIO__ = new Audio('/background-music.mp3');
+  }
+
+  function playAudio() {
+    window.__BACKGROUND_AUDIO__.loop = true;
+    window.__BACKGROUND_AUDIO__.volume = 0.4;
+    window.__BACKGROUND_AUDIO__.play();
+  }
+
+  function handleInitialUserInteraction() {
+    window.addEventListener('click', () => {
+      if (window.__HAS_BEEN_INITIAL_INTERACTION__) return;
+      playAudio();
+      window.__HAS_BEEN_INITIAL_INTERACTION__ = true;
+    });
   }
   useEffect(() => {
     saveAudio();
+    handleInitialUserInteraction();
   }, []);
 
   return (
