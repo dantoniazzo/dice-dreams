@@ -8,7 +8,6 @@ import {
 } from '_shared/ui';
 import { Modal } from '_shared/ui';
 import modal5 from '/modal-5.png';
-import { PADDING, TOP } from '../lib/constants';
 import { ModalCloseButton } from '_shared/ui';
 import styled from 'styled-components';
 import { getHowToModalId } from '../lib/how-to-modal.element';
@@ -27,7 +26,7 @@ export const HowToModal = (props: ModalProps) => {
     <Dialog open={props.open} setOpen={props.setOpen}>
       <Modal id={getHowToModalId()}>
         <ModalBackground src={modal5} />
-        <ModalContent justifyContent="flex-start" padding={PADDING} top={TOP}>
+        <ModalContent justifyContent="flex-start" padding={'0'} top={'2em'}>
           <ModalCloseButton
             align="end"
             onClick={() => {
