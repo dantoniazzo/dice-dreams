@@ -10,7 +10,8 @@ import {
 import styled from 'styled-components';
 import modal1 from '/modal-1.png';
 import { useNavigate } from 'react-router-dom';
-import socialButtons from '/social-buttons.png';
+import googlePlay from '/google-play.png';
+import appStore from '/app-store.png';
 import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
 import { useState } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
@@ -99,6 +100,14 @@ export const Confirmations = styled.div`
   gap: 8px;
   align-items: flex-start;
 `;
+
+export const AppsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const AppLink = styled.a``;
 
 export const EmptySpaceOnBottom = styled.div``;
 
@@ -226,7 +235,23 @@ export const UserIdModal = () => {
             ></Controller>
           </Confirmations>
           <LargeText top="1rem">NOT A PLAYER YET?</LargeText>
-          <Image src={socialButtons} />
+          <AppsContainer>
+            <AppLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://play.google.com/store/apps/details?id=com.superplaystudios.dicedreams&pli=1"
+            >
+              <Image cursor="pointer" src={googlePlay} />
+            </AppLink>
+            <AppLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://apps.apple.com/us/app/dice-dreams/id1484468651"
+            >
+              <Image cursor="pointer" src={appStore} />
+            </AppLink>
+          </AppsContainer>
+
           <EmptySpaceOnBottom />
         </ModalContent>
       </form>
