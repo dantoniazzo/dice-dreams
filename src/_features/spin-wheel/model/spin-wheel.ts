@@ -13,13 +13,6 @@ const getCurrentRotation = () => {
   );
 };
 
-const getCurrentRotationToFullCircle = () => {
-  const currentRotation = getCurrentRotation();
-  const leftToFull = currentRotation % 360;
-
-  return currentRotation ? currentRotation + leftToFull : 0;
-};
-
 export const playSpinSound = () => {
   window.__WHEEL_SPIN_AUDIO__.play();
 };
