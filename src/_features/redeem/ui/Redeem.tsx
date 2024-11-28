@@ -1,8 +1,8 @@
-import logo from "/logo.png";
-import girlGizmo from "/girl-gizmo.png";
-import getButton from "/get-button.png";
-import styled from "styled-components";
-import { MOBILE_SIZE } from "_shared/lib";
+import logo from '/logo.png';
+import girlGizmo from '/girl-gizmo.png';
+import getButton from '/get-button.png';
+import styled from 'styled-components';
+import { MOBILE_SIZE } from '_shared/lib';
 
 export const RedeemContainer = styled.div`
   width: 100%;
@@ -59,10 +59,14 @@ export const GirlGizmo = styled.img`
   }
 `;
 
+export const GetLink = styled.a`
+  width: 40%;
+`;
+
 export const GetButton = styled.img`
   cursor: pointer;
   aspect-ratio: auto;
-  width: 40%;
+
   object-fit: contain;
 `;
 
@@ -71,7 +75,9 @@ export const Redeem = () => {
     <RedeemContainer>
       <Left>
         <BigLogo src={logo} />
-        <GetButton src={getButton} />
+        <GetLink href="https://www.superplay.co/">
+          <GetButton src={getButton} />
+        </GetLink>
       </Left>
       <Right>
         <GirlGizmo src={girlGizmo} />
