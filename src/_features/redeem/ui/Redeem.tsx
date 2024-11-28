@@ -64,9 +64,9 @@ export const GetLink = styled.a`
 `;
 
 export const GetButton = styled.img`
+  width: 100%;
   cursor: pointer;
   aspect-ratio: auto;
-
   object-fit: contain;
 `;
 
