@@ -1,2 +1,2 @@
-export const PADDING = 24;
-export const TOP = '0.5rem';
+export const PADDING = '12px';
+export const TOP = '0';

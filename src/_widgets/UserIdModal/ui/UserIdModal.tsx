@@ -9,7 +9,6 @@ import {
 } from '_shared/ui';
 import styled from 'styled-components';
 import modal1 from '/modal-1.png';
-import { PADDING, TOP } from '../lib/constants';
 import { useNavigate } from 'react-router-dom';
 import socialButtons from '/social-buttons.png';
 import { IdInstructionsModal } from '_widgets/IdInstructionsModal';
@@ -28,6 +27,10 @@ export const InputContainer = styled.div`
   border-radius: 1000px;
   display: flex;
   overflow: hidden;
+`;
+
+export const EmptySpaceOnTop = styled.div`
+  height: 25%;
 `;
 
 export const InputTextContainer = styled.div`
@@ -97,6 +100,8 @@ export const Confirmations = styled.div`
   align-items: flex-start;
 `;
 
+export const EmptySpaceOnBottom = styled.div``;
+
 const schema = yup
   .object({
     playerId: yup.string().required('Please provide your player ID'),
@@ -143,7 +148,8 @@ export const UserIdModal = () => {
     <Modal>
       <ModalBackground src={modal1} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <ModalContent padding={PADDING} top={TOP}>
+        <ModalContent padding={'0'} top={'0'}>
+          <EmptySpaceOnTop />
           <LargeText>ENTER YOUR PLAYER ID</LargeText>
           <Controller
             name="playerId"
@@ -221,6 +227,7 @@ export const UserIdModal = () => {
           </Confirmations>
           <LargeText top="1rem">NOT A PLAYER YET?</LargeText>
           <Image src={socialButtons} />
+          <EmptySpaceOnBottom />
         </ModalContent>
       </form>
     </Modal>
