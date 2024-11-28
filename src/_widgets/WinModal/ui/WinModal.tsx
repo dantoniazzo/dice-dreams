@@ -38,7 +38,7 @@ export const WinModal = () => {
         <Image src={modal2} />
         <ModalContent justifyContent="space-around" padding={PADDING} top={TOP}>
           <MediumText>You’ve Won</MediumText>
-          <PrizeText>{prize?.name}</PrizeText>
+          <PrizeText>{prize?.name.toUpperCase()}</PrizeText>
           <Image src={christmasDice} />
           <MediumText>Redeem Your Prize Inside The Game</MediumText>
           <Image cursor="pointer" onClick={closeModal} src={redeemButton} />
