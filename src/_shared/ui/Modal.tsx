@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import modalCloseButton from '/modal-close-button.png';
+import { MOBILE_SIZE } from '_shared/lib';
 
 export const ModalContainer = styled.div`
   width: 100%;
@@ -13,6 +14,9 @@ export const ModalContainer = styled.div`
 
 export const ModalBackground = styled.img`
   height: 100%;
+  @media (max-width: ${MOBILE_SIZE}px) {
+    height: 80%;
+  }
 `;
 
 export const ModalContent = styled.div<{

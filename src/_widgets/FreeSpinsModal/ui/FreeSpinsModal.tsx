@@ -22,11 +22,20 @@ import { useSpinWheelMutation } from '_features/spin-wheel';
 import { useLazyGetPlayerQuery } from '_entities/player';
 import { useSpins } from '_entities/player';
 import styled from 'styled-components';
+import { MOBILE_SIZE } from '_shared/lib';
 
 export const EmptySpaceOnTop = styled.div`
   height: 25%;
+
+  @media (max-width: ${MOBILE_SIZE}px) {
+    height: 24%;
+  }
 `;
-export const EmptySpaceOnBottom = styled.div``;
+export const EmptySpaceOnBottom = styled.div`
+  @media (max-width: ${MOBILE_SIZE}px) {
+    height: 20%;
+  }
+`;
 
 export const FreeSpinsModal = () => {
   const playerId = useAppSelector((state) => state.main.playerId);

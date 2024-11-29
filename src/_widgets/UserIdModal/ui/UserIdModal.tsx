@@ -20,6 +20,7 @@ import * as yup from 'yup';
 import { useLazyGetPlayerQuery } from '_entities/player';
 import { useAppDispatch, setPlayerId } from '_app/redux';
 import { IErrorResponse } from '_shared/model/types';
+import { MOBILE_SIZE } from '_shared/lib';
 
 export const InputContainer = styled.div`
   border: 3px solid black;
@@ -32,6 +33,10 @@ export const InputContainer = styled.div`
 
 export const EmptySpaceOnTop = styled.div`
   height: 25%;
+
+  @media (max-width: ${MOBILE_SIZE}px) {
+    height: 20%;
+  }
 `;
 
 export const InputTextContainer = styled.div`
@@ -105,11 +110,19 @@ export const AppsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media (max-width: ${MOBILE_SIZE}px) {
+    gap: 0;
+  }
 `;
 
 export const AppLink = styled.a``;
 
-export const EmptySpaceOnBottom = styled.div``;
+export const EmptySpaceOnBottom = styled.div`
+  @media (max-width: ${MOBILE_SIZE}px) {
+    height: 20%;
+  }
+`;
 
 const schema = yup
   .object({
